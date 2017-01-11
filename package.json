@@ -1,0 +1,33 @@
+{
+  "name": "markdown-magic-directory-tree",
+  "version": "1.0.1",
+  "description": "Print an archy tree for markdown file",
+  "main": "index.js",
+  "scripts": {
+    "docs": "node example.js",
+    "prepublish": "npm run docs"
+  },
+  "keywords": [
+    "markdown-magic",
+    "archy",
+    "tree",
+    "plugin"
+  ],
+  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "markdown-magic": "^0.1.6"
+  },
+  "dependencies": {
+    "archy": "^1.0.0",
+    "directory-tree": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camacho/markdown-magic-directory-tree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camacho/markdown-magic-directory-tree/issues"
+  },
+  "homepage": "https://github.com/camacho/markdown-magic-directory-tree#readme"
+}
