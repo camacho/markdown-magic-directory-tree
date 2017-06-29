@@ -33,14 +33,15 @@ markdownMagic(markdownPath, config);
 
 ## Usage in markdown
 
-<!-- AUTO-GENERATED-CONTENT:START (DIRTREE:dir=./) -->
+<!-- AUTO-GENERATED-CONTENT:START (DIRTREE:dir=./&depth=1) -->
 ```
 markdown-magic-directory-tree/
 ├── .npmrc
 ├── README.md
 ├── example.js
 ├── index.js
-└── package.json
+├── package.json
+└── yarn.lock
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -48,3 +49,4 @@ markdown-magic-directory-tree/
 
 * **dir** - `process.cwd()` by default
 * **ignore** - `['.git', '.gitkeep', '.gitignore', 'node_modules']` by default
+* **depth** - `Infinity` by default (how deep in the tree to traverse)
