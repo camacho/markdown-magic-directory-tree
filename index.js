@@ -18,20 +18,21 @@ const sortChildren = (a, b) => {
 
 const processNode = (node, ignore, options, depth = 0) => {
   if (ignore.indexOf(node.name) !== -1 ||
-    (options.onlyDirs && node.type !== 'directory' && depth !== 0)) return;
-
-  if (ignore.indexOf(node.name) !== -1) return;
+    depth > options.depth ||
+    (options.onlyDirs && node.type !== 'directory')
+  ) return;
 
   const response = {
     label: `${node.name}${ node.children ? '/' : ''}`,
   };
 
   if (node.children && depth < options.depth) {
+    depth++;
     response.nodes = node
       .children
       .sort(sortChildren)
-      .map((child) => processNode(child, ignore, options, depth++))
-      .filter((child) => !!child);
+      .map((child) => processNode(child, ignore, options, depth))
+      .filter((child) => !!child)
   }
 
   return response;
