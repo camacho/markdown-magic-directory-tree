@@ -50,3 +50,4 @@ markdown-magic-directory-tree/
 * **dir** - `process.cwd()` by default
 * **ignore** - `['.git', '.gitkeep', '.gitignore', 'node_modules']` by default
 * **depth** - `Infinity` by default (how deep in the tree to traverse)
+* **onlyDirs** - `false` by default (how mnuch t)

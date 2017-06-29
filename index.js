@@ -1,11 +1,13 @@
 const path = require('path');
+const { statSync } = require('fs');
 
 const archy = require('archy');
 const dirTree = require('directory-tree');
 
 const defaults = {
   depth: Infinity,
-  dir: '.'
+  dir: '.',
+  onlyDirs: false
 }
 
 const sortChildren = (a, b) => {
@@ -15,6 +17,9 @@ const sortChildren = (a, b) => {
 };
 
 const processNode = (node, ignore, options, depth = 0) => {
+  if (ignore.indexOf(node.name) !== -1 ||
+    (options.onlyDirs && node.type !== 'directory' && depth !== 0)) return;
+
   if (ignore.indexOf(node.name) !== -1) return;
 
   const response = {
@@ -44,7 +49,7 @@ module.exports = function DIRTREE(content, _options = {}, config) {
     'node_modules'
   ];
 
-  const tree = archy(processNode(dirTree(dir), ignore, options, 0));
+  const tree = archy(processNode(dirTree(dir), ignore, options));
 
   return ['```', tree.trim(), '```'].join('\n');
 }

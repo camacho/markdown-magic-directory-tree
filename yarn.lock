@@ -96,9 +96,9 @@ diacritics-map@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/diacritics-map/-/diacritics-map-0.1.0.tgz#6dfc0ff9d01000a2edf2865371cac316e94977af"
 
-directory-tree@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-1.2.1.tgz#7812f6ebe6dd9d4962696a65e1f7ba73c367770d"
+directory-tree@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/directory-tree/-/directory-tree-2.0.0.tgz#c0a5fa0d642a1b1b7d10351b3c1db429770d8946"
 
 esprima@^3.1.1:
   version "3.1.3"
