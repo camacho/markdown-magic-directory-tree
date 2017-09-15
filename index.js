@@ -13,7 +13,7 @@ const defaults = {
 const sortChildren = (a, b) => {
   if (a.children && !b.children) return -1;
   else if (!a.children && b.children) return 1;
-  return a.name > b.name;
+  return a.name.localeCompare(b.name);
 };
 
 const processNode = (node, ignore, options, depth = 0) => {
