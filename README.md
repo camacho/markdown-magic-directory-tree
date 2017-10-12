@@ -37,10 +37,10 @@ markdownMagic(markdownPath, config);
 ```
 markdown-magic-directory-tree/
 ├── .npmrc
-├── README.md
 ├── example.js
 ├── index.js
 ├── package.json
+├── README.md
 └── yarn.lock
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->

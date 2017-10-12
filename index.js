@@ -7,36 +7,37 @@ const dirTree = require('directory-tree');
 const defaults = {
   depth: Infinity,
   dir: '.',
-  onlyDirs: false
-}
+  onlyDirs: false,
+};
 
-const sortChildren = (a, b) => {
-  if (a.children && !b.children) return -1;
-  else if (!a.children && b.children) return 1;
+const sortEntries = (a, b) => {
+  if (a.type === 'directory' && b.type !== 'directory') return -1;
+  if (a.type !== 'directory' && b.type === 'directory') return 1;
   return a.name.localeCompare(b.name);
 };
 
 const processNode = (node, ignore, options, depth = 0) => {
-  if (ignore.indexOf(node.name) !== -1 ||
+  if (
+    ignore.indexOf(node.name) !== -1 ||
     depth > options.depth ||
     (options.onlyDirs && node.type !== 'directory')
-  ) return;
+  )
+    return;
 
   const response = {
-    label: `${node.name}${ node.children ? '/' : ''}`,
+    label: `${node.name}${node.type === 'directory' ? '/' : ''}`,
   };
 
-  if (node.children && depth < options.depth) {
+  if (node.type === 'directory' && depth < options.depth) {
     depth++;
-    response.nodes = node
-      .children
-      .sort(sortChildren)
-      .map((child) => processNode(child, ignore, options, depth))
-      .filter((child) => !!child)
+    response.nodes = node.children
+      .sort(sortEntries)
+      .map(child => processNode(child, ignore, options, depth))
+      .filter(child => !!child);
   }
 
   return response;
-}
+};
 
 module.exports = function DIRTREE(content, _options = {}, config) {
   const options = Object.assign({}, defaults, _options);
@@ -47,10 +48,10 @@ module.exports = function DIRTREE(content, _options = {}, config) {
     '.git',
     '.gitkeep',
     '.gitignore',
-    'node_modules'
+    'node_modules',
   ];
 
   const tree = archy(processNode(dirTree(dir), ignore, options));
 
   return ['```', tree.trim(), '```'].join('\n');
-}
+};
