@@ -32,8 +32,8 @@ const processNode = (node, ignore, options, depth = 0) => {
     depth++;
     response.nodes = node.children
       .sort(sortEntries)
-      .map(child => processNode(child, ignore, options, depth))
-      .filter(child => !!child);
+      .map((child) => processNode(child, ignore, options, depth))
+      .filter((child) => !!child);
   }
 
   return response;
