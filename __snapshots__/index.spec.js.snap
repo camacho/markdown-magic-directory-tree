@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`markdown-magic-directory-tree > renders a sorted archy tree with directories before files 1`] = `
+"\`\`\`
+basic-tree/
+├─┬ nested/
+│ └── b.txt
+└── a.txt
+\`\`\`"
+`;
