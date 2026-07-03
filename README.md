@@ -41,7 +41,6 @@ markdown-magic-directory-tree/
 ├── __fixtures__/
 ├── __snapshots__/
 ├── .github/
-├── .npmrc
 ├── example.js
 ├── index.js
 ├── index.spec.js
