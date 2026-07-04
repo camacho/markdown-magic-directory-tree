@@ -34,7 +34,7 @@
   "scripts": {
     "test": "vitest run",
     "docs": "node example.js && prettier --write README.md",
-    "prepublishOnly": "npm run docs",
+    "prepublishOnly": "npm test && npm run docs && prettier --check .",
     "format": "prettier --write ."
   },
   "prettier": {
