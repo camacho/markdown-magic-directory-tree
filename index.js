@@ -1,8 +1,6 @@
-const path = require('path');
-const { statSync } = require('fs');
-
-const archy = require('archy');
-const dirTree = require('directory-tree');
+import path from 'path';
+import archy from 'archy';
+import dirTree from 'directory-tree';
 
 const defaults = {
   depth: Infinity,
@@ -18,7 +16,7 @@ const sortEntries = (a, b) => {
 
 const processNode = (node, ignore, options, depth = 0) => {
   if (
-    ignore.indexOf(node.name) !== -1 ||
+    ignore.includes(node.name) ||
     depth > options.depth ||
     (options.onlyDirs && node.type !== 'directory')
   )
@@ -39,19 +37,22 @@ const processNode = (node, ignore, options, depth = 0) => {
   return response;
 };
 
-module.exports = function DIRTREE(content, _options = {}, config) {
-  const options = Object.assign({}, defaults, _options);
-
-  const dir = path.resolve(path.dirname(config.originalPath), options.dir);
-
-  const ignore = options.ignore || [
+export default function DIRTREE({ content, options = {}, srcPath }) {
+  const opts = { ...defaults, ...options };
+  const dir = path.resolve(path.dirname(srcPath), opts.dir);
+  const ignore = opts.ignore || [
     '.git',
     '.gitkeep',
     '.gitignore',
     'node_modules',
+    '.DS_Store',
   ];
-
-  const tree = archy(processNode(dirTree(dir), ignore, options));
+  // directory-tree@3 only returns `name`/`path` (+`children`) unless the
+  // caller opts in to extra attributes; `type` is required for our
+  // directory-vs-file logic (attributes docs: https://github.com/mihneadb/node-directory-tree#options)
+  const tree = archy(
+    processNode(dirTree(dir, { attributes: ['type'] }), ignore, opts),
+  );
 
   return ['```', tree.trim(), '```'].join('\n');
-};
+}

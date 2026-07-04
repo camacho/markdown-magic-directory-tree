@@ -13,41 +13,47 @@ npm i markdown-magic markdown-magic-directory-tree --save-dev
 See `example.js` for usage.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./example.js) -->
-<!-- The below code snippet is automatically added from ./example.js -->
+
 ```js
-const fs = require('fs');
-const path = require('path');
-const markdownMagic = require('markdown-magic');
+import path from 'path';
+import { markdownMagic } from 'markdown-magic';
+import DIRTREE from './index.js';
 
 const config = {
+  matchWord: 'AUTO-GENERATED-CONTENT',
   transforms: {
-    DIRTREE: require('./index.js'),
+    DIRTREE,
   },
 };
 
-const markdownPath = path.join(__dirname, 'README.md');
-markdownMagic(markdownPath, config);
+const markdownPath = path.join(import.meta.dirname, 'README.md');
+await markdownMagic(markdownPath, config);
 ```
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./example.js) -->
-<!-- AUTO-GENERATED-CONTENT:END *-->
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Usage in markdown
 
 <!-- AUTO-GENERATED-CONTENT:START (DIRTREE:dir=./&depth=1) -->
+
 ```
 markdown-magic-directory-tree/
-├── .npmrc
+├── __fixtures__/
+├── __snapshots__/
+├── .github/
 ├── example.js
 ├── index.js
+├── index.spec.js
 ├── package-lock.json
 ├── package.json
 └── README.md
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Options
 
-* **dir** - `process.cwd()` by default
-* **ignore** - `['.git', '.gitkeep', '.gitignore', 'node_modules']` by default
-* **depth** - `Infinity` by default (how deep in the tree to traverse)
-* **onlyDirs** - `false` by default (how mnuch t)
+- **dir** - `process.cwd()` by default
+- **ignore** - `['.git', '.gitkeep', '.gitignore', 'node_modules']` by default
+- **depth** - `Infinity` by default (how deep in the tree to traverse)
+- **onlyDirs** - `false` by default (how mnuch t)
