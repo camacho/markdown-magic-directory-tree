@@ -1,3 +1,5 @@
+> **📦 This package has moved.** It now lives in the [markdown-magic-plugins](https://github.com/camacho/markdown-magic-plugins) monorepo at [`packages/directory-tree`](https://github.com/camacho/markdown-magic-plugins/tree/main/packages/directory-tree). This repository is archived; issues and contributions go to the monorepo.
+
 # Directory tree plugin
 
 Add directory tree to markdown files via [markdown-magic](https://github.com/DavidWells/markdown-magic)
